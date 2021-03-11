@@ -1,1 +1,28 @@
-<p>personaje-list works!</p>
+
+<div class="row" infinite-scroll>
+    <div class="col-xs-12 col-sm-6 col-md-3" *ngFor="let personaje of personajes">
+        <div class="card">
+            <div class="image">
+                <a [routerLink]="['/personaje-detalle', personaje.id]">
+                    <img [src]="personaje.image" [alt]="personaje.name" class="card-img-top" />
+                </a>
+            </div>
+            <div class="card-inner">
+                <div class="header">
+                    <a [routerLink]="['/personaje-detalle', personaje.id]">
+                        <h3 class="text-danger">{{ personaje.name | slice: 0:15}}</h3>
+                    </a>
+                    <h4 class="text-muted">{{ personaje.gender }}</h4>
+                    <small class="text-muted">{{ personaje.status}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound" *ngIf="personajes.length <= 0">
+        <p>No hay resultados.......</p>
+    </div>
+</div>
+<div class="d-flex justify-content-center align-items-center p-4">
+    <button class="button2" (click)="anteriorPage()" style="vertical-align:middle"><span>Anterior</span></button>
+    <button class="button" (click)="siguientePage()" style="vertical-align:middle"><span>Siguiente</span></button>
+</div>
